@@ -1,0 +1,26 @@
+﻿<Properties StartupConfiguration="{49AA6D69-C1C5-4A30-BBF8-3B15A2B09C9D}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Coordinate.cs">
+    <Files>
+      <File FileName="Coordinate.cs" Line="9" Column="29" />
+      <File FileName="Program.cs" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="battleship" expanded="True">
+            <Node name="battleship" expanded="True">
+              <Node name="Coordinate.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.battleship PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

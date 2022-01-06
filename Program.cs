@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-
 namespace battleship
 {
     class Program
@@ -9,67 +8,125 @@ namespace battleship
         {
 
             int guesses = 8;
+            int battleShipLives = 5;
             bool isPlaying = true;
 
             Console.WriteLine("Welcome to Battleship!\n");
 
-            //Coordinate computerShipCoordinates = new Coordinate(new Random().Next(0, 11), new Random().Next(0, 11));
-            //Coordinate computerShipCoordinates = new Coordinate(8, 5);
 
-            string computerX = new Random().Next(0, 11).ToString();
-            string computerY = new Random().Next(0, 11).ToString();
+            // need to make list of 5 random unique coordinates
+            List<Coordinate> computerShips = new List<Coordinate>();
 
-            void playAgain(string answer)
+            //
+            while (computerShips.Count < 6)
             {
-                if (answer == "y") guesses = 8;
+                int x = new Random().Next(0, 11);
+                int y = new Random().Next(0, 11);
+                Coordinate randomShip = new Coordinate(x, y);
+                if (!computerShips.Contains(randomShip))
+                {
+                    computerShips.Add(randomShip);
+                }
+            }
 
+            // Computer Generated Ships
+            Console.WriteLine("Computer generated ship:");
+            computerShips.ForEach((ship) =>
+            {
+                Console.WriteLine($"({ship.X}, {ship.Y})");
+            });
+
+            List<Coordinate> previousGuesses = new List<Coordinate>();
+
+            do
+            {
+                Coordinate userGuess = new Coordinate();
+
+                Console.Write("\nGuess X coordinate: ");
+                string xCoordinate = Console.ReadLine();
+                userGuess.X = int.Parse(xCoordinate);
+
+
+                Console.Write("Guess Y coordinate: ");
+                string yCoordinate = Console.ReadLine();
+                userGuess.Y = int.Parse(yCoordinate);
+
+                string guessesLog = logGuesses(userGuess.X, userGuess.Y);
+
+
+
+                if (computerShips.Contains(userGuess))
+                {
+
+                    battleShipLives--;
+                    Console.WriteLine($"*** Battleship hit! --> Battleship Lives: {battleShipLives} ***");
+
+                    Console.WriteLine($"Previous Guesses: {guessesLog}");
+
+                    guesses--;
+                    Console.WriteLine($" --- {guesses} guesses left! ---\n");
+
+                    if (battleShipLives == 0)
+                    {
+                        Console.WriteLine("YOU WIN\n");
+                        playAgain();
+                    }
+                    
+                    guessesCheck(guesses);
+
+                }
+                else
+                {
+                    Console.WriteLine("\nYou missed! Guess again...");
+                    Console.WriteLine($"Previous Guesses: {guessesLog}");
+
+                    guesses--;
+                    Console.WriteLine($" --- {guesses} guesses left! ---\n");
+
+                    guessesCheck(guesses);
+                }
+            } while (isPlaying);
+
+
+            void guessesCheck(int numGuesses)
+            {
+                if (numGuesses == 0)
+                {
+                    Console.WriteLine("Game Over!");
+                    playAgain();
+                }
+            }
+
+
+            string logGuesses(int x, int y)
+            {
+                previousGuesses.Add(new Coordinate(x, y));
+
+                string prevGuessesString = "";
+                previousGuesses.ForEach((coordinate) =>
+                {
+                    prevGuessesString += $"({coordinate.X}, {coordinate.Y}) ";
+                });
+                return prevGuessesString;
+            }
+
+
+            void playAgain()
+            {
+                Console.Write("Play again? y/n: ");
+                string answer = Console.ReadLine();
+                if (answer == "y")
+                {
+                    guesses = 8;
+                    battleShipLives = 5;
+                    previousGuesses.Clear();
+                }
                 if (answer == "n")
                 {
                     isPlaying = false;
                     Console.WriteLine("Thanks for playing!");
                 }
             }
-
-            //List<string> previousGuess = new List<string>();
-            do
-            {
-                //Coordinate userCoordinate = new Coordinate();
-
-                Console.Write("Guess X coordinate: ");
-                string userX = Console.ReadLine();
-                //string xCoordiante = Console.ReadLine();
-                //userCoordinate.X = int.Parse(xCoordinate);
-
-                Console.Write("Guess Y coordinate: ");
-                string userY = Console.ReadLine();
-                //string yCoordinate = Console.ReadLine();
-                //userCoordinate.Y = int.Parse(yCoordinate)
-
-                //userCoordinate.X == computerCoordinate.X && userCoordinate.X == computerCoordinate.Y
-                if (computerX == userX && computerY == userY)
-                {
-                    Console.WriteLine("Battleship hit!");
-                    Console.WriteLine("YOU WIN\n");
-                    Console.Write("Play again? y/n: ");
-                    string answer = Console.ReadLine();
-                    playAgain(answer);
-                }
-                else
-                {
-                    //previousGuess.Add(new Coordinate(userCoordinate.X, userCoordinate.Y));
-                    Console.WriteLine("\nYou missed! Guess again...");
-                    //Console.WriteLine($"Your previous guesses: {previousGuess.ToArray().ToString
-                    guesses--;
-                    Console.WriteLine($" --- {guesses} guesses left! ---\n");
-                    if (guesses == 0)
-                    {
-                        Console.WriteLine("Game Over!");
-                        Console.Write("Play again? y/n: ");
-                        string answer = Console.ReadLine();
-                        playAgain(answer);
-                    }
-                }
-            } while (isPlaying);
 
         }
     }

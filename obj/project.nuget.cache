@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wkukoOD7leAF1f47uDXqbRhLzBvdS0koBzQi8VM1xvIRXqK95/Ryn41gDsZRv5d06bX2qzPw6s2/5GLgw5bHcw==",
+  "dgSpecHash": "XjXy2AM6Q+KdaSF6kTGhL/9/Frkfs2YF0flRrZAi/m/5+yqUwjHq8DaZXFgtNiz2X6nWMWkASx3cDP9bvA/HaQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Brandon\\Desktop\\Mentorship Program\\battleship\\battleship.csproj",
+  "projectFilePath": "/Users/brandonchuck/Desktop/MentorshipProgram/BattleshipGame/battleship.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

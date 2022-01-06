@@ -8,26 +8,24 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\Brandon\\.nuget\\packages\\": {}
+    "/Users/brandonchuck/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Brandon\\Desktop\\Mentorship Program\\battleship\\battleship.csproj",
+      "projectUniqueName": "/Users/brandonchuck/Desktop/MentorshipProgram/BattleshipGame/battleship.csproj",
       "projectName": "battleship",
-      "projectPath": "C:\\Users\\Brandon\\Desktop\\Mentorship Program\\battleship\\battleship.csproj",
-      "packagesPath": "C:\\Users\\Brandon\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Brandon\\Desktop\\Mentorship Program\\battleship\\obj\\",
+      "projectPath": "/Users/brandonchuck/Desktop/MentorshipProgram/BattleshipGame/battleship.csproj",
+      "packagesPath": "/Users/brandonchuck/.nuget/packages/",
+      "outputPath": "/Users/brandonchuck/Desktop/MentorshipProgram/BattleshipGame/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Brandon\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/brandonchuck/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -60,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.404/RuntimeIdentifierGraph.json"
       }
     }
   }

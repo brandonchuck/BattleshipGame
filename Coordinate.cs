@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace battleship
+﻿namespace battleship
 {
     public class Coordinate
     {
@@ -12,8 +8,8 @@ namespace battleship
         public Coordinate() { }
         public Coordinate(int x, int y)
         {
-            this.X = x;
-            this.Y = y;
+            X = x;
+            Y = y;
         }
 
     }
