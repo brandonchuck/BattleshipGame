@@ -21,11 +21,11 @@ namespace battleship
             do
             {
                 // -- For debugging --
-                //Console.WriteLine("Computer generated ship:");
-                //computerShipsList.ForEach((ship) =>
-                //{
-                //    Console.WriteLine($"({ship.X}, {ship.Y})");
-                //});
+                Console.WriteLine("Computer generated ship:");
+                computerShipsList.ForEach((ship) =>
+                {
+                    Console.WriteLine($"({ship.X}, {ship.Y})");
+                });
 
                 Coordinate userGuess = new Coordinate();
 
@@ -86,7 +86,8 @@ namespace battleship
                     int x = new Random().Next(0, 11);
                     int y = new Random().Next(0, 11);
                     Coordinate randomShip = new Coordinate(x, y);
-                    if (!computerShips.Contains(randomShip))
+                    Coordinate match = computerShips.Find((ship) => randomShip.X == ship.X && randomShip.Y == ship.Y);
+                    if (!computerShips.Contains(match))  // Can I just do if(!computerShips.Contains(randomShip)){...} ???
                     {
                         computerShips.Add(randomShip);
                     }
@@ -125,7 +126,7 @@ namespace battleship
                     guesses = 8; // reset guesses to 8
                     previousGuesses.Clear(); // clear guesses log
 
-                    shipsList.Clear(); // clear computerShips list
+                    //shipsList.Clear(); // clear computerShips list
                     generateShips(shipsList); // generate 5 new ships
                 }
                 if (answer == "n")
