@@ -8,43 +8,30 @@ namespace battleship
         {
 
             int guesses = 8;
-            int battleShipLives = 5;
             bool isPlaying = true;
 
-            Console.WriteLine("Welcome to Battleship!\n");
+            Console.WriteLine("WELCOME TO BATTLESHIP!\n");
 
-            List<Coordinate> computerShips = new List<Coordinate>();
+            List<Coordinate> computerShipsList = new List<Coordinate>();
 
-            // View the 5 randomly generated ship coordinates
-            while (computerShips.Count < 5)
-            {
-                int x = new Random().Next(0, 11);
-                int y = new Random().Next(0, 11);
-                Coordinate randomShip = new Coordinate(x, y);
-                if (!computerShips.Contains(randomShip))
-                {
-                    computerShips.Add(randomShip);
-                }
-            }
-
-            // Computer Generated Ships
-            // Should be able to "Hit" these ships
-            Console.WriteLine("Computer generated ship:");
-            computerShips.ForEach((ship) =>
-            {
-                Console.WriteLine($"({ship.X}, {ship.Y})");
-            });
+            generateShips(computerShipsList);
 
             List<Coordinate> previousGuesses = new List<Coordinate>();
 
             do
             {
+
+                Console.WriteLine("Computer generated ship:");
+                computerShipsList.ForEach((ship) =>
+                {
+                    Console.WriteLine($"({ship.X}, {ship.Y})");
+                });
+
                 Coordinate userGuess = new Coordinate();
 
                 Console.Write("\nGuess X coordinate: ");
                 string xCoordinate = Console.ReadLine();
                 userGuess.X = int.Parse(xCoordinate);
-
 
                 Console.Write("Guess Y coordinate: ");
                 string yCoordinate = Console.ReadLine();
@@ -52,27 +39,32 @@ namespace battleship
 
                 string guessesLog = logGuesses(userGuess.X, userGuess.Y);
 
+                // check if user guess matches a computer ship coordinate and return that ship from the computerShips list
+                Coordinate match = computerShipsList.Find(ship => userGuess.X == ship.X && userGuess.Y == ship.Y);
 
-                // Can I not use .Contains() here to check whether the userGuess Coordinate object is within the computerShips list???
-                if (computerShips.Contains(userGuess)) // <-------------
+                // if the match was found, that means it is contained inside the computerShips list
+                if (computerShipsList.Contains(match))
                 {
+                    computerShipsList.Remove(match);
 
-                    battleShipLives--;
-                    Console.WriteLine($"*** Battleship hit! --> Battleship Lives: {battleShipLives} ***");
+                    Console.WriteLine("Computer generated ship:");
+                    computerShipsList.ForEach((ship) =>
+                    {
+                        Console.WriteLine($"({ship.X}, {ship.Y})");
+                    });
 
+                    Console.WriteLine($"*** Battleship hit! --> Battleships Remaining: {computerShipsList.Count} ***");
                     Console.WriteLine($"Previous Guesses: {guessesLog}");
 
                     guesses--;
+                    guessesCheck(guesses);
                     Console.WriteLine($" --- {guesses} guesses left! ---\n");
 
-                    if (battleShipLives == 0)
+                    if (computerShipsList.Count == 0)
                     {
                         Console.WriteLine("YOU WIN\n");
-                        playAgain();
-                    }
-                    
-                    guessesCheck(guesses);
-
+                        playAgain(computerShipsList);
+                    }        
                 }
                 else
                 {
@@ -80,22 +72,40 @@ namespace battleship
                     Console.WriteLine($"Previous Guesses: {guessesLog}");
 
                     guesses--;
+                    guessesCheck(guesses);
                     Console.WriteLine($" --- {guesses} guesses left! ---\n");
 
-                    guessesCheck(guesses);
                 }
             } while (isPlaying);
 
 
 
 
+
+
+
             // ---------------- FUNCTIONS ------------------
+
+            void generateShips(List<Coordinate> computerShips)
+            {
+                while (computerShips.Count < 5)
+                {
+                    int x = new Random().Next(0, 11);
+                    int y = new Random().Next(0, 11);
+                    Coordinate randomShip = new Coordinate(x, y);
+                    if (!computerShips.Contains(randomShip))
+                    {
+                        computerShips.Add(randomShip);
+                    }
+                }
+            }
+
             void guessesCheck(int numGuesses)
             {
                 if (numGuesses == 0)
                 {
                     Console.WriteLine("Game Over!");
-                    playAgain();
+                    playAgain(computerShipsList);
                 }
             }
 
@@ -113,15 +123,17 @@ namespace battleship
             }
 
 
-            void playAgain()
+            void playAgain(List<Coordinate> shipsList)
             {
                 Console.Write("Play again? y/n: ");
                 string answer = Console.ReadLine();
                 if (answer == "y")
                 {
-                    guesses = 8;
-                    battleShipLives = 5;
-                    previousGuesses.Clear();
+                    guesses = 8; // reset guesses to 8
+                    previousGuesses.Clear(); // clear guesses log
+
+                    //ships.Clear(); // clear computerShips list
+                    generateShips(shipsList); // generate 5 new ships
                 }
                 if (answer == "n")
                 {
