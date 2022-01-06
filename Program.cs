@@ -13,12 +13,10 @@ namespace battleship
 
             Console.WriteLine("Welcome to Battleship!\n");
 
-
-            // need to make list of 5 random unique coordinates
             List<Coordinate> computerShips = new List<Coordinate>();
 
-            //
-            while (computerShips.Count < 6)
+            // View the 5 randomly generated ship coordinates
+            while (computerShips.Count < 5)
             {
                 int x = new Random().Next(0, 11);
                 int y = new Random().Next(0, 11);
@@ -30,6 +28,7 @@ namespace battleship
             }
 
             // Computer Generated Ships
+            // Should be able to "Hit" these ships
             Console.WriteLine("Computer generated ship:");
             computerShips.ForEach((ship) =>
             {
@@ -54,8 +53,8 @@ namespace battleship
                 string guessesLog = logGuesses(userGuess.X, userGuess.Y);
 
 
-
-                if (computerShips.Contains(userGuess))
+                // Can I not use .Contains() here to check whether the userGuess Coordinate object is within the computerShips list???
+                if (computerShips.Contains(userGuess)) // <-------------
                 {
 
                     battleShipLives--;
@@ -88,6 +87,9 @@ namespace battleship
             } while (isPlaying);
 
 
+
+
+            // ---------------- FUNCTIONS ------------------
             void guessesCheck(int numGuesses)
             {
                 if (numGuesses == 0)
