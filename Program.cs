@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using static System.Console;
 namespace battleship
 {
     class Program
@@ -10,7 +11,7 @@ namespace battleship
             int guesses = 8;
             bool isPlaying = true;
 
-            Console.WriteLine("WELCOME TO BATTLESHIP!\n");
+            WriteLine("WELCOME TO BATTLESHIP!\n");
 
             List<Coordinate> computerShipsList = new List<Coordinate>();
 
@@ -21,20 +22,20 @@ namespace battleship
             do
             {
                 // -- For debugging --
-                Console.WriteLine("Computer generated ship:");
+                WriteLine("Computer generated ship:");
                 computerShipsList.ForEach((ship) =>
                 {
-                    Console.WriteLine($"({ship.X}, {ship.Y})");
+                    WriteLine($"({ship.X}, {ship.Y})");
                 });
 
                 Coordinate userGuess = new Coordinate();
 
-                Console.Write("\nGuess X coordinate: ");
-                string xCoordinate = Console.ReadLine();
+                Write("\nGuess X coordinate: ");
+                string xCoordinate = ReadLine();
                 userGuess.X = int.Parse(xCoordinate);
 
-                Console.Write("Guess Y coordinate: ");
-                string yCoordinate = Console.ReadLine();
+                Write("Guess Y coordinate: ");
+                string yCoordinate = ReadLine();
                 userGuess.Y = int.Parse(yCoordinate);
 
                 string guessesLog = logGuesses(userGuess.X, userGuess.Y);
@@ -47,30 +48,30 @@ namespace battleship
                 {
                     computerShipsList.Remove(match);
 
-                    Console.WriteLine($"\nNICE HIT! {computerShipsList.Count} Ships Remaining...\n");
-                    Console.WriteLine($"Previous Guesses: {guessesLog}");
+                    WriteLine($"\nNICE HIT! {computerShipsList.Count} Ships Remaining...\n");
+                    WriteLine($"Previous Guesses: {guessesLog}");
 
                     if (computerShipsList.Count == 0)
                     {
-                        Console.WriteLine("\nYOU WIN");
+                        WriteLine("\nYOU WIN");
                         playAgain(computerShipsList);
                     }
 
                     guesses--;
                     guessesCheck(guesses);
-                    Console.WriteLine($"\n --- {guesses} guesses left! ---\n");
+                    WriteLine($"\n --- {guesses} guesses left! ---\n");
                 }
                 else
                 {
 
-                    Console.WriteLine("\nYOU MISSED! Guess again...\n");
-                    Console.WriteLine($"Previous Guesses: {guessesLog}");
+                    WriteLine("\nYOU MISSED! Guess again...\n");
+                    WriteLine($"Previous Guesses: {guessesLog}");
 
-                    Console.WriteLine($"\n{computerShipsList.Count} Ships Remaining...\n");
+                    WriteLine($"\n{computerShipsList.Count} Ships Remaining...\n");
 
                     guesses--;
                     guessesCheck(guesses);
-                    Console.WriteLine($"\n --- {guesses} guesses left! ---\n");
+                    WriteLine($"\n --- {guesses} guesses left! ---\n");
 
                 }
             } while (isPlaying);
@@ -98,7 +99,7 @@ namespace battleship
             {
                 if (numGuesses == 0)
                 {
-                    Console.WriteLine("\n--- OUT OF GUESSES - GAME OVER! ---");
+                    WriteLine("\n--- OUT OF GUESSES - GAME OVER! ---");
                     playAgain(computerShipsList);
                 }
             }
@@ -119,8 +120,8 @@ namespace battleship
 
             void playAgain(List<Coordinate> shipsList)
             {
-                Console.Write("\nPlay again? y/n: ");
-                string answer = Console.ReadLine();
+                Write("\nPlay again? y/n: ");
+                string answer = ReadLine();
                 if (answer == "y")
                 {
                     guesses = 8; // reset guesses to 8
@@ -132,7 +133,7 @@ namespace battleship
                 if (answer == "n")
                 {
                     isPlaying = false;
-                    Console.WriteLine("Thanks for playing! :)");
+                    WriteLine("Thanks for playing! :)");
                 }
             }
 
