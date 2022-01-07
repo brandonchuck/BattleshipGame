@@ -22,11 +22,11 @@ namespace battleship
             do
             {
                 // -- For debugging --
-                WriteLine("Computer generated ship:");
-                computerShipsList.ForEach((ship) =>
-                {
-                    WriteLine($"({ship.X}, {ship.Y})");
-                });
+                //WriteLine("Computer generated ship:");
+                //computerShipsList.ForEach((ship) =>
+                //{
+                //    WriteLine($"({ship.X}, {ship.Y})");
+                //});
 
                 Write("\nGuess X coordinate: ");
                 string xCoordinate = ReadLine();
@@ -79,8 +79,6 @@ namespace battleship
 
 
 
-            // ---------------- FUNCTIONS ------------------
-
             void generateShips(List<Coordinate> computerShips)
             {
                 while (computerShips.Count < 5)
@@ -125,11 +123,10 @@ namespace battleship
                 string answer = ReadLine();
                 if (answer == "y")
                 {
-                    guesses = 8; // reset guesses to 8
-                    previousGuesses.Clear(); // clear guesses log
+                    guesses = 8;
+                    previousGuesses.Clear();
 
-                    //shipsList.Clear(); // clear computerShips list
-                    generateShips(shipsList); // generate 5 new ships
+                    generateShips(shipsList);
                 }
                 if (answer == "n")
                 {
