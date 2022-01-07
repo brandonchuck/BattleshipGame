@@ -28,15 +28,13 @@ namespace battleship
                     WriteLine($"({ship.X}, {ship.Y})");
                 });
 
-                Coordinate userGuess = new Coordinate();
-
                 Write("\nGuess X coordinate: ");
                 string xCoordinate = ReadLine();
-                userGuess.X = int.Parse(xCoordinate);
 
                 Write("Guess Y coordinate: ");
                 string yCoordinate = ReadLine();
-                userGuess.Y = int.Parse(yCoordinate);
+
+                Coordinate userGuess = new Coordinate(int.Parse(xCoordinate), int.Parse(yCoordinate));
 
                 string guessesLog = logGuesses(userGuess.X, userGuess.Y);
 
@@ -55,11 +53,14 @@ namespace battleship
                     {
                         WriteLine("\nYOU WIN");
                         playAgain(computerShipsList);
+                        return;
                     }
 
                     guesses--;
                     guessesCheck(guesses);
-                    WriteLine($"\n --- {guesses} guesses left! ---\n");
+                    WriteLine($"\n ---------- {guesses} guesses left! ----------\n");
+
+                    
                 }
                 else
                 {
@@ -71,7 +72,7 @@ namespace battleship
 
                     guesses--;
                     guessesCheck(guesses);
-                    WriteLine($"\n --- {guesses} guesses left! ---\n");
+                    WriteLine($"\n ---------- {guesses} guesses left! ----------\n");
 
                 }
             } while (isPlaying);
