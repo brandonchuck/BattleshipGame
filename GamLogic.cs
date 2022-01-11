@@ -16,7 +16,7 @@ namespace battleship
 
             WriteLine("WELCOME TO BATTLESHIP!\n");
 
-            helperMethods.generateShips(computerShipsList);
+            helperMethods.GenerateShips(computerShipsList);
 
             WriteLine("Computer generated ship:");
             computerShipsList.ForEach((ship) =>
@@ -34,7 +34,7 @@ namespace battleship
 
                 Coordinate userGuess = new Coordinate(int.Parse(xCoordinate), int.Parse(yCoordinate));
 
-                string guessesLog = helperMethods.logGuesses(userGuess.X, userGuess.Y, previousGuesses);
+                string guessesLog = helperMethods.LogGuesses(userGuess.X, userGuess.Y, previousGuesses);
 
                 Coordinate match = computerShipsList.Find(ship => userGuess.X == ship.X && userGuess.Y == ship.Y);
 
@@ -48,11 +48,11 @@ namespace battleship
                     if (computerShipsList.Count == 0)
                     {
                         WriteLine("\nYOU WIN");
-                        helperMethods.playAgain(computerShipsList, previousGuesses);
+                        helperMethods.PlayAgain(computerShipsList, previousGuesses);
                     } else
                     {
                         helperMethods.guesses--;
-                        helperMethods.checkGuesses(helperMethods.guesses);
+                        helperMethods.CheckGuesses(helperMethods.guesses);
                         WriteLine($"\n ---------- {helperMethods.guesses} guesses left! ----------\n");
                     }
                 }
@@ -65,10 +65,10 @@ namespace battleship
                     WriteLine($"\n{computerShipsList.Count} Ships Remaining...\n");
 
                     helperMethods.guesses--;
-                    helperMethods.checkGuesses(helperMethods.guesses);
+                    helperMethods.CheckGuesses(helperMethods.guesses);
                     if (helperMethods.guesses == 0)
                     {
-                        helperMethods.playAgain(computerShipsList, previousGuesses);
+                        helperMethods.PlayAgain(computerShipsList, previousGuesses);
                     }
 
                     WriteLine($"\n ---------- {helperMethods.guesses} guesses left! ----------\n");

@@ -9,7 +9,7 @@ namespace battleship
         public int guesses = 8;
         public bool isPlaying = true;
 
-        public void generateShips(List<Coordinate> computerShipsList)
+        public void GenerateShips(List<Coordinate> computerShipsList)
         {
             while (computerShipsList.Count < 5)
             {
@@ -24,7 +24,7 @@ namespace battleship
             }
         }
 
-        public void checkGuesses(int numGuesses)
+        public void CheckGuesses(int numGuesses)
         {
             if (numGuesses == 0)
             {
@@ -33,7 +33,7 @@ namespace battleship
         }
 
 
-        public string logGuesses(int x, int y, List<Coordinate> previousGuesses)
+        public string LogGuesses(int x, int y, List<Coordinate> previousGuesses)
         {
             previousGuesses.Add(new Coordinate(x, y));
 
@@ -46,7 +46,7 @@ namespace battleship
         }
 
 
-        public void playAgain(List<Coordinate> computerShipsList, List<Coordinate> previousGuesses)
+        public void PlayAgain(List<Coordinate> computerShipsList, List<Coordinate> previousGuesses)
         {
             Write("\nPlay again? y/n: ");
             string answer = ReadLine();
@@ -55,7 +55,7 @@ namespace battleship
                 guesses = 8;
                 previousGuesses.Clear();
                 computerShipsList.Clear();
-                generateShips(computerShipsList);
+                GenerateShips(computerShipsList);
             }
             if (answer == "n")
             {
